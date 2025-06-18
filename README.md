@@ -1,4 +1,4 @@
-# Livestream Overlay Management App
+# 🎥 Livestream Overlay Management App
 
 This is a **full-stack livestream overlay management application** built with:
 - **Backend:** Flask, MongoDB, FFmpeg
@@ -34,7 +34,7 @@ LIVESTREAM-APP
 └── README.md
 ```
 ---
-Technologies Used
+🖥️ Technologies Used
 Backend: Flask, FFmpeg, MongoDB, PyMongo, Flask-CORS, Python Dotenv
 
 Frontend: React, Vite, Axios, React-Draggable, React-Player
@@ -93,7 +93,7 @@ Environment Variables: Python Dotenv for MongoDB URL storage
     ```
     The frontend will be accessible at `http://localhost:5173`.
     ---
-## API Documentation
+## 📖 API Documentation
 
 ### Base URL
 http://localhost:5001/api
@@ -147,13 +147,13 @@ Array of overlay objects.
 **Response:**
 { "message": "Overlay deleted" }
 ---
-## User Documentation
+## 📖 User Documentation
 
 ### How to Use the App
 
 #### Start the Backend:
 - Make sure your Flask backend is running on port **5001**.
-- Make sure you install FFmpeg locally.
+- ‼️ Make sure you install FFmpeg locally.
 
 #### Start the Frontend:
 - Open the React app on **http://localhost:5173**.
