@@ -112,74 +112,65 @@ http://localhost:5001/api
 **Response:**
 { "message": "Stream started", "url": "/static/stream/stream.m3u8" }
 
-2. Create Overlay
-POST /overlays
+### 2. Create Overlay
+**POST** `/overlays`
 
-Body:
+**Body:**
+{ "content": "Overlay text or image URL", "position": { "x": 50, "y": 50 }, "size": { "width": 200, "height": 50 } }
 
-json
-Copy
-Edit
+**Response:**  
+Created overlay object.
+
+
+### 3. Get All Overlays
+**GET** `/overlays`
+
+**Response:**  
+Array of overlay objects.
+
+
+### 4. Update Overlay Position
+**PUT** `/overlays/:id`
+
+**Body:**
+{ "position": { "x": 100, "y": 150 } }
+
+**Response:**
 {
+  "_id": "overlay_id",
   "content": "Overlay text or image URL",
-  "position": { "x": 50, "y": 50 },
+  "position": { "x": 100, "y": 150 },
   "size": { "width": 200, "height": 50 }
 }
-Response: Created overlay object.
 
-3. Get All Overlays
-GET /overlays
 
-Response: Array of overlay objects.
+### 5. Delete Overlay
+**DELETE** `/overlays/:id`
 
-4. Update Overlay Position
-PUT /overlays/:id
-
-Body:
-
-json
-Copy
-Edit
-{ "position": { "x": 100, "y": 150 } }
-Response: Updated overlay object.
-
-5. Delete Overlay
-DELETE /overlays/:id
-
-Response:
-
-json
-Copy
-Edit
+**Response:**
 { "message": "Overlay deleted" }
-User Documentation
-How to Use the App
-Start the Backend:
+---
+## User Documentation
 
-Make sure your Flask backend is running on port 5001.
+### How to Use the App
 
-Start the Frontend:
+#### Start the Backend:
+- Make sure your Flask backend is running on port **5001**.
 
-Open the React app on http://localhost:5173.
+#### Start the Frontend:
+- Open the React app on **http://localhost:5173**.
 
-Input RTSP URL:
+#### Input RTSP URL:
+- Enter a valid RTSP stream URL (you can use services like [RTSP.me](https://rtsp.me/) to generate test streams).
+- Click **Start Stream** to begin streaming.
 
-Enter a valid RTSP stream URL (you can use services like RTSP.me to generate test streams).
+#### Managing Overlays:
+- Create new overlays using the provided form.
+- Overlays can be:
+  - **Dragged and repositioned live** on the video.
+  - **Deleted** using the 'X' button on the overlay.
+- All overlays **persist in the MongoDB database.**
 
-Click Start Stream to begin streaming.
+#### Stop Stream:
+- Click **Stop Stream** to stop the current stream.
 
-Managing Overlays:
-
-Create new overlays using the provided form.
-
-Overlays can be:
-
-Dragged and repositioned live on the video.
-
-Deleted using the 'X' button on the overlay.
-
-All overlays persist in the MongoDB database.
-
-Stop Stream:
-
-Click Stop Stream to stop the current stream.
