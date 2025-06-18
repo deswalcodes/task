@@ -96,28 +96,22 @@ Environment Variables: Python Dotenv for MongoDB URL storage
     ```
     The frontend will be accessible at `http://localhost:5173`.
     ---
-API Documentation
-Base URL
-bash
-Copy
-Edit
+## API Documentation
+
+### Base URL
 http://localhost:5001/api
-Endpoints
-1. Start Livestream
-POST /stream/start
 
-Body:
+### Endpoints
 
-json
-Copy
-Edit
+### 1. Start Livestream
+**POST** `/stream/start`
+
+**Body:**
 { "rtsp_url": "your_rtsp_url" }
-Response:
 
-json
-Copy
-Edit
+**Response:**
 { "message": "Stream started", "url": "/static/stream/stream.m3u8" }
+
 2. Create Overlay
 POST /overlays
 
