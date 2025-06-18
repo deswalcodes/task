@@ -23,17 +23,14 @@ LIVESTREAM-APP
 │   ├── app.py
 │   └── requirements.txt
 ├── fe
-│   ├── node_modules
+│ 
 │   ├── public
 │   ├── src
 │   │   └── App.jsx
 │   ├── .gitignore
 │   ├── eslint.config.js
 │   ├── index.html
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── vite.config.js
-│   └── README.md
+│  
 └── README.md
 ```
 ---
