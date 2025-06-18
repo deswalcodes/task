@@ -156,6 +156,7 @@ Array of overlay objects.
 
 #### Start the Backend:
 - Make sure your Flask backend is running on port **5001**.
+- Make sure you install FFmpeg locally.
 
 #### Start the Frontend:
 - Open the React app on **http://localhost:5173**.
