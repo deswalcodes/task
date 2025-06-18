@@ -4,18 +4,21 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo import MongoClient
 from bson import ObjectId
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
-
-client = MongoClient("mongodb+srv://21cs2014:xJdmk0jkdV0jd0rh@cluster0.x4o0n.mongodb.net/")
+# MongoDB connection using environment variable
+mongo_url = os.getenv("MONGO_URL")
+client = MongoClient(mongo_url)
 db = client["livestream_db"]
 overlays = db["overlays"]
 
-
 ffmpeg_process = None
-
 
 def serialize_document(document):
     if '_id' in document:
@@ -31,7 +34,6 @@ def start_stream():
     if not rtsp_url:
         return jsonify({"error": "RTSP URL required"}), 400
 
-    
     if ffmpeg_process:
         ffmpeg_process.terminate()
 
@@ -53,7 +55,6 @@ def start_stream():
     ffmpeg_process = subprocess.Popen(command)
     return jsonify({"message": "Stream started", "url": "/static/stream/stream.m3u8"})
 
-
 @app.route('/api/overlays', methods=['POST'])
 def create_overlay():
     data = request.get_json()
@@ -64,12 +65,10 @@ def create_overlay():
     overlay = overlays.find_one({"_id": result.inserted_id})
     return jsonify(serialize_document(overlay)), 201
 
-
 @app.route('/api/overlays', methods=['GET'])
 def get_overlays():
     all_overlays = [serialize_document(overlay) for overlay in overlays.find()]
     return jsonify(all_overlays)
-
 
 @app.route('/api/overlays/<id>', methods=['PUT'])
 def update_overlay(id):
@@ -84,7 +83,6 @@ def update_overlay(id):
     updated_overlay = overlays.find_one({"_id": ObjectId(id)})
     return jsonify(serialize_document(updated_overlay))
 
-
 @app.route('/api/overlays/<id>', methods=['DELETE'])
 def delete_overlay(id):
     result = overlays.delete_one({"_id": ObjectId(id)})
@@ -92,7 +90,6 @@ def delete_overlay(id):
         return jsonify({"error": "Overlay not found"}), 404
 
     return jsonify({"message": "Overlay deleted"})
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=True)
