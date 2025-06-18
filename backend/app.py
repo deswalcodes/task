@@ -8,15 +8,15 @@ from bson import ObjectId
 app = Flask(__name__)
 CORS(app)
 
-# MongoDB Setup
+
 client = MongoClient("mongodb+srv://21cs2014:xJdmk0jkdV0jd0rh@cluster0.x4o0n.mongodb.net/")
 db = client["livestream_db"]
 overlays = db["overlays"]
 
-# FFmpeg process tracker
+
 ffmpeg_process = None
 
-# Helper function to serialize MongoDB documents
+
 def serialize_document(document):
     if '_id' in document:
         document['_id'] = str(document['_id'])
@@ -31,11 +31,10 @@ def start_stream():
     if not rtsp_url:
         return jsonify({"error": "RTSP URL required"}), 400
 
-    # Stop existing stream
+    
     if ffmpeg_process:
         ffmpeg_process.terminate()
 
-    # Convert RTSP to HLS
     output_dir = "static/stream"
     os.makedirs(output_dir, exist_ok=True)
 
