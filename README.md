@@ -76,6 +76,9 @@ Environment Variables: Python Dotenv for MongoDB URL storage
     ```
     The backend will run on `http://localhost:5001`.
 
+6. ⚙️ Prerequisite:
+- FFmpeg must be installed and accessible from the system PATH.
+
 ### Frontend
 1.  Navigate to the `frontend` directory:
     ```bash
